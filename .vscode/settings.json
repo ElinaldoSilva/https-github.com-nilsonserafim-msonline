@@ -1,0 +1,38 @@
+{
+    "emmet.excludeLanguages": [
+        
+        "markdown"
+    ],
+    "cSpell.words": [
+        "Cemiterio",
+        "Declaracao",
+        "Destinacao",
+        "Funerarias",
+        "Horario",
+        "Liberacao",
+        "Municipio",
+        "Obito",
+        "Usuario",
+        "alteravel",
+        "bloq",
+        "dthora",
+        "funeraria",
+        "horalimite",
+        "horarios",
+        "indisponivel",
+        "maiusculo",
+        "maxw",
+        "minw",
+        "msonline",
+        "munic",
+        "nivel",
+        "objcorretor",
+        "ocupacao",
+        "parametro",
+        "parametros",
+        "servico",
+        "uniqueidentifier",
+        "usuarios",
+        "verfica"
+    ]
+}

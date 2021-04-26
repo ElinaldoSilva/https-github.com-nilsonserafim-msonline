@@ -1,0 +1,143 @@
+.aj01, .aj02, .aj04, .aj10 { 
+    text-align:center;
+    cursor: pointer;
+}
+.aj02   {   min-width: 100px;   }
+.aj03   {   
+    display: contents;
+    padding: 0 2px 2px !important; 
+}
+.aj04   {
+    padding: 4px;
+    background-color: #9e9e9e !important;
+    color: #fff;
+    cursor: not-allowed;
+    display: table-cell;
+    vertical-align: middle;
+}
+.aj05 {
+    min-width: 40px;
+    font-weight: 700;
+    font-size: large;
+    height:35px;
+}
+.aj06 {
+    min-width: 40px;
+    font-weight: 800;
+    font-size: 11px;
+}
+.aj10 {
+    height: 38px !important;
+    padding: 6px !important;
+    white-space: nowrap;
+}
+
+.card   {   margin-right: 1px;  }
+table   {   margin-bottom: 0; }
+.table-bordered>:not(caption)>* {
+    border-bottom: 1px solid #adadad;
+    border-width: 1px 5px;
+    font-size: 12px;
+}
+th, td { 
+    vertical-align: middle !important;
+    height: 50px;
+    padding: 0.6rem 6px !important;
+    text-align: center;        
+}
+
+.reservar-horario {
+    background-color: #6fa58c85 !important;
+    min-width: 57px;
+}
+.horario-indisponivel   {
+    background-color: #f6ef97d9 !important;
+    min-width: 57px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #dfc6a9 !important;
+    color: #946f42 !important;
+    line-height: 1.3;
+    cursor: not-allowed;
+}
+.c-default  {
+    cursor: default;
+}
+.custom-radio {
+    min-width: 80px;
+    padding-top: 2px;
+}
+.custom-control-label {
+   padding-top: 4px;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-color: #ced4da;
+}
+.st-01
+{
+    border: 1px solid #ced4da !important; 
+    min-height: 30px;        
+}
+.maxw-400 {  max-width: 400px;    }
+.minw-145 {  min-width: 145px;    }
+
+.bg-direto
+{
+    background-image: url("../img/direto.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+@media (max-width: 576px) {
+    .d-xs-block {
+        display: block !important;
+    }
+    .ms-xs-2 {
+        margin-left: .5rem;
+    }
+}
+.aj12 {  
+    min-width: 150px;  
+    width: 150px;  
+}
+@media (min-width: 768px) {
+    .msg-urna {
+        margin-left: -112px;
+        width: 120px;
+    }
+}
+
+.close {
+    color: #e00000;
+    opacity: 0.6 !important;
+    font-size: 1.1rem;
+    line-height: 0;
+    cursor: pointer;
+}
+.pad-01 {   
+    padding: 0.3rem 6px !important;   
+    height: 34px;
+}
+.c-red      {  color: rgba(255, 0, 0, 0.596)       }
+.c-azul     {  color: #0a58ca;    }
+.c-brown    {  line-height: 1.42;  }
+.bg-gray    
+    {
+        background-color: #f4f4f4 !important;  
+        white-space: nowrap; 
+     }
+.bg-reserva {  background-color: #6fa58c85 !important; }
+.bg-bloq    {  background-color: #e8e8e8b8 !important     }
+.bg-red {
+    background-color: #cf730026 !important;
+}
+.wrapper1, .wrapper3 
+{
+    width: 100%; 
+    max-height: 18px;
+    overflow: auto; 
+}
+.div-1, .div-2 
+{ 
+    width:200px; 
+    height: 20px; 
+}
