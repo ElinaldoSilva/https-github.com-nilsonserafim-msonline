@@ -215,7 +215,8 @@
                         <th >10:45</th>
                         <th >11:00</th>
                         <th >11:15</th>
-                        <th class="aj02">11:30-13:00</th>
+                        <th >11:30</th>
+                        <th class="aj02">11:31-12:59</th>
                         <th >13:00</th>
                         <th >13:15</th>
                         <th >13:30</th>
@@ -244,6 +245,7 @@
                         <td class="aj01 horario-liberado td1045" data-hora="1045" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045"></span></td>
                         <td class="aj01 horario-liberado td1100" data-hora="1100" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100"></span></td>
                         <td class="aj01 horario-liberado td1115" data-hora="1115" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115"></span></td>
+                        <td class="aj01 horario-liberado td1130" data-hora="1130" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130"></span></td>
                         <td class="aj03 horario-indisponivel"><span class="aj04 bold">{{ __('INTERVALO') }}</span></td>
                         <td class="aj01 horario-liberado td1300" data-hora="1300" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300"></span></td>
                         <td class="aj01 horario-liberado td1315" data-hora="1315" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315"></span></td>
@@ -264,7 +266,7 @@
 
                     {{--     Mostra Tabela de Horarios e Capelas aos Administradores     --}}
                     @if ( Auth::user()->nivel==1 )
-                    <tr><td colspan="23" style="background: black; height: 5px; margin: 2px 0 !important;  padding: 0 !important;"></td></tr>
+                    <tr><td colspan="24" style="background: black; height: 5px; margin: 2px 0 !important;  padding: 0 !important;"></td></tr>
                     @foreach($regCapelas as $capela)
                     <tr class="marcacoes marcacoes_{{ date('Y-m-d') }} capela-{{ $capela->Nome }}" data-date="{{ date('Y-m-d') }}">
                         <td class="aj05">{{ $capela->Nome }}</td>
@@ -274,8 +276,8 @@
                         <td class="aj10 horario-liberado td1045-{{ $capela->Nome }}" data-hora="1045-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1100-{{ $capela->Nome }}" data-hora="1100-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1115-{{ $capela->Nome }}" data-hora="1115-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-{{ $capela->Nome }}"></span></td>
-                        <td class="aj10 horario-liberado td1130-{{ $capela->Nome }}" data-hora="1130-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-{{ $capela->Nome }}"></span></td>   
-                        <!--                    <td class="aj03 horario-indisponivel"><span class="aj04 bold">{{ __('INTERVALO') }}</span></td>  -->
+                        <td class="aj10 horario-liberado td1130-{{ $capela->Nome }}" data-hora="1130-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130-{{ $capela->Nome }}"></span></td>   
+                        <td class="aj10 horario-liberado td1145-{{ $capela->Nome }}" data-hora="1145-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1145-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1300-{{ $capela->Nome }}" data-hora="1300-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1315-{{ $capela->Nome }}" data-hora="1315-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1330-{{ $capela->Nome }}" data-hora="1330-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1330-{{ $capela->Nome }}"></span></td>
@@ -301,8 +303,8 @@
                         <td class="aj10 horario-liberado td1045-DIR s-direto" data-="1045-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045-DIR"></span></td>
                         <td class="aj10 horario-liberado td1100-DIR s-direto" data-="1100-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100-DIR"></span></td>
                         <td class="aj10 horario-liberado td1115-DIR s-direto" data-="1115-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-DIR"></span></td>
-                        <td class="aj10 horario-liberado td1130-DIR s-direto" data-="1130-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-DIR"></span></td>   
-                        <!--                    <td class="aj03 horario-indisponivel"><span class="aj04 bold">{{ __('INTERVALO') }}</span></td>  -->
+                        <td class="aj10 horario-liberado td1130-DIR s-direto" data-="1130-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130-DIR"></span></td>   
+                        <td class="aj10 horario-liberado td1145-DIR s-direto" data-="1145-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1145-DIR"></span></td>   
                         <td class="aj10 horario-liberado td1300-DIR s-direto" data-="1300-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300-DIR"></span></td>
                         <td class="aj10 horario-liberado td1315-DIR s-direto" data-="1315-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315-DIR"></span></td>
                         <td class="aj10 horario-liberado td1330-DIR s-direto" data-="1330-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1330-DIR"></span></td>
@@ -346,30 +348,31 @@
                 <table id="tab-2" class="table table-bordered border-dark mb-0" style="border-bottom: 3px solid;">
                   <thead class="table-dark">
                     <tr>
-                            <th ></th>
-                            <th >10:00</th>
-                            <th >10:15</th>
-                            <th >10:30</th>
-                            <th >10:45</th>
-                            <th >11:00</th>
-                            <th >11:15</th>
-                            <th class="aj02">11:30-13:00</th>
-                            <th >13:00</th>
-                            <th >13:15</th>
-                            <th >13:30</th>
-                            <th >13:45</th>
-                            <th >14:00</th>
-                            <th >14:15</th>
-                            <th >14:30</th>
-                            <th >14:45</th>
-                            <th >15:00</th>
-                            <th >15:15</th>
-                            <th >15:30</th>
-                            <th >15:45</th>
-                            <th >16:00</th>
-                            <th >16:15</th>
-                            <th >16:30</th>
-                            </tr>
+                        <th ></th>
+                        <th >10:00</th>
+                        <th >10:15</th>
+                        <th >10:30</th>
+                        <th >10:45</th>
+                        <th >11:00</th>
+                        <th >11:15</th>
+                        <th >11:30</th>
+                        <th class="aj02">11:31-12:59</th>
+                        <th >13:00</th>
+                        <th >13:15</th>
+                        <th >13:30</th>
+                        <th >13:45</th>
+                        <th >14:00</th>
+                        <th >14:15</th>
+                        <th >14:30</th>
+                        <th >14:45</th>
+                        <th >15:00</th>
+                        <th >15:15</th>
+                        <th >15:30</th>
+                        <th >15:45</th>
+                        <th >16:00</th>
+                        <th >16:15</th>
+                        <th >16:30</th>
+                        </tr>
                   </thead>
 
                   <tbody>
@@ -381,6 +384,7 @@
                             <td class="aj01 horario-liberado td1045" data-hora="1045" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045"></span></td>
                             <td class="aj01 horario-liberado td1100" data-hora="1100" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100"></span></td>
                             <td class="aj01 horario-liberado td1115" data-hora="1115" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115"></span></td>
+                            <td class="aj01 horario-liberado td1130" data-hora="1130" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130"></span></td>
                             <td class="aj03 horario-indisponivel"><span class="aj04 bold">{{ __('INTERVALO') }}</span></td>
                             <td class="aj01 horario-liberado td1300" data-hora="1300" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300"></span></td>
                             <td class="aj01 horario-liberado td1315" data-hora="1315" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315"></span></td>
@@ -402,7 +406,7 @@
 
                         {{--     Mostra Tabela de Horarios e Capelas aos Administradores     --}}
                     @if ( Auth::user()->nivel==1 )
-                    <tr><td colspan="23" style="background: black; height: 5px; margin: 2px 0 !important;  padding: 0 !important;"></td></tr>
+                    <tr><td colspan="24" style="background: black; height: 5px; margin: 2px 0 !important;  padding: 0 !important;"></td></tr>
                     @foreach($regCapelas as $capela)
                     <tr class="marcacoes marcacoes_{{ $date->format('Y-m-d') }} capela-{{ $capela->Nome }}" data-date="{{ $date->format('Y-m-d') }}">
                         <td class="aj05">{{ $capela->Nome }}</td>
@@ -412,7 +416,8 @@
                         <td class="aj10 horario-liberado td1045-{{ $capela->Nome }}" data-hora="1045-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1100-{{ $capela->Nome }}" data-hora="1100-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1115-{{ $capela->Nome }}" data-hora="1115-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-{{ $capela->Nome }}"></span></td>
-                        <td class="aj10 horario-liberado td1130-{{ $capela->Nome }}" data-hora="1130-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-{{ $capela->Nome }}"></span></td>   
+                        <td class="aj10 horario-liberado td1130-{{ $capela->Nome }}" data-hora="1130-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130-{{ $capela->Nome }}"></span></td>   
+                        <td class="aj10 horario-liberado td1145-{{ $capela->Nome }}" data-hora="1145-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1145-{{ $capela->Nome }}"></span></td>   
                         <td class="aj10 horario-liberado td1300-{{ $capela->Nome }}" data-hora="1300-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1315-{{ $capela->Nome }}" data-hora="1315-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315-{{ $capela->Nome }}"></span></td>
                         <td class="aj10 horario-liberado td1330-{{ $capela->Nome }}" data-hora="1330-{{ $capela->Nome }}" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1330-{{ $capela->Nome }}"></span></td>
@@ -438,8 +443,8 @@
                         <td class="aj10 horario-liberado td1045-DIR s-direto" data-="1045-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1045-DIR"></span></td>
                         <td class="aj10 horario-liberado td1100-DIR s-direto" data-="1100-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1100-DIR"></span></td>
                         <td class="aj10 horario-liberado td1115-DIR s-direto" data-="1115-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-DIR"></span></td>
-                        <td class="aj10 horario-liberado td1130-DIR s-direto" data-="1130-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1115-DIR"></span></td>   
-                        <!--                    <td class="aj03 horario-indisponivel"><span class="aj04 bold">{{ __('INTERVALO') }}</span></td>  -->
+                        <td class="aj10 horario-liberado td1130-DIR s-direto" data-="1130-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1130-DIR"></span></td>   
+                        <td class="aj10 horario-liberado td1145-DIR s-direto" data-="1145-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1145-DIR"></span></td>   
                         <td class="aj10 horario-liberado td1300-DIR s-direto" data-="1300-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1300-DIR"></span></td>
                         <td class="aj10 horario-liberado td1315-DIR s-direto" data-="1315-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1315-DIR"></span></td>
                         <td class="aj10 horario-liberado td1330-DIR s-direto" data-="1330-DIR" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top"><span class="s1330-DIR"></span></td>
@@ -743,7 +748,7 @@
                 var sepultamentos_diretos = retorno.sep_diretos_1;
                 var sepultamentos_detalhes = retorno.sep_detalhes_1;
 
-                var tab_horarios=['10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '13:00', '13:15', '13:30', '13:45', 
+                var tab_horarios=['10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '13:00', '13:15', '13:30', '13:45', 
                          '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30'];
                 
                 //  Percorre os sepultamentos agendados
@@ -794,8 +799,8 @@
                 var sepultamentos_diretos = retorno.sep_diretos_2;
                 var sepultamentos_detalhes = retorno.sep_detalhes_2;
 
-                {{--  Percorre os sepultamentos agendados       --}}
-                //
+                {{--  //  Percorre os sepultamentos agendados       --}}
+                      //
                 linha=$(".agendamentos_"+retorno.data2).first();
 
                 $.each(sepultamentos_capelas, function(index, qtd_sepultamentos)
@@ -907,7 +912,7 @@
                     } else {
                         if(dados.dt_inicio != dados.data) {
                             linha=$(".marcacoes_"+dados.dt_inicio+".capela-"+dados.cod_capela);
-                            for (let i = dados.inicio; i <= 22; i++) {
+                            for (let i = dados.inicio; i <= 23; i++) {
                                 if( $(linha).find("td").eq(i).hasClass("horario-liberado") ) {
                                     _msg = ".s"+$(linha).find("td").eq(i).data("hora");
                                     $(linha).find("td").eq(i)
