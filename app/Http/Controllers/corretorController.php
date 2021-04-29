@@ -40,14 +40,6 @@ class corretorController extends Controller
             ->orderBy('users.name')
             ->paginate(10);
 
-        /*
-        $regCorretores=User::
-            select('users.id', 'users.Nome', 'Funerarias.nome as nome_funeraria', 'users.corretorId', 'users.status')
-            ->join('Funerarias', 'Funerarias.FunerariaId', '=', 'users.funerariaId')
-            ->orderBy('users.name')
-            ->toSql();
-        */
-
         return view('corretores.corretoresIndex',compact('regCorretores'));
     }
 

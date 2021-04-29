@@ -12,7 +12,7 @@ class capelasModel extends Model
     protected $table = "Capelas";
     protected $primaryKey = 'CapelaId';
 
-    protected $fillable = ['CapelaId', 'Nome', 'Liberada'];
+    protected $fillable = ['CapelaId', 'Nome', 'Liberada', "Preferencial"];
 
     protected $casts = [
         'CapelaId' => 'string',

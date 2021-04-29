@@ -1,4 +1,4 @@
-.aj01, .aj02, .aj04, .aj10 { 
+.aj01, .aj02, .aj04 { 
     text-align:center;
     cursor: pointer;
 }
@@ -62,6 +62,9 @@ th, td {
 }
 .c-default  {
     cursor: default;
+}
+.c-pointer  {
+    cursor: pointer;
 }
 .custom-radio {
     min-width: 80px;

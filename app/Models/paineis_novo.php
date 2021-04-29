@@ -13,7 +13,8 @@ class paineis_novo extends Model
      * Chave Primaria padrão "id", declaração da chave primaria fora do padrão
      *
      */
-    protected $table = "paineis_novo";
+    protected $table = "Paineis";
+//    protected $table = "paineis_novo";
     protected $primaryKey = 'PainelId';
     public $incrementing = false;
 

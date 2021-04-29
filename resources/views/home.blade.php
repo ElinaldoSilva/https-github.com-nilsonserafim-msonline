@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="mt-0" style="position: fixed;z-index: 999999; right: 20px; top: 138px; box-shadow: 0 0px 20px 5px #eee6e6;">
-            <button type="button" onclick="fsubmit()" style="min-width:90px !important;" class="btn btn-primary ft-13">
+            <button type="button" id="gravar" onclick="fsubmit()" style="min-width:90px !important;" class="btn btn-primary ft-13">
                 <i class="fa fa-dot-circle-o"></i>&nbsp;&nbsp;{{ __('Gravar') }}
             </button>
         </div>
@@ -545,6 +545,7 @@
     var verfica_capelas;
     var capelas_ocupacao1;
     var capelas_ocupacao2;
+    var capelas_status;
     var dia_reserva=1;
     var avisar = true;
     var inicio = true;
@@ -587,7 +588,7 @@
 
         //  verica capelas disponiveis
         verfica_capelas = setInterval(function() {
-            fcapelas_livres(dia_reserva);
+//            fcapelas_livres(dia_reserva);
         }, 8000);
 
     });
@@ -722,6 +723,7 @@
                     .removeClass("horario-indisponivel")
                     .removeClass("reservar-horario")
                     .removeClass("c-default")
+                    .removeClass("c-pointer")
                     .addClass("horario-liberado")
                     .find("span").html("");
 
@@ -729,6 +731,7 @@
                     .removeClass("horario-indisponivel")
                     .removeClass("reservar-horario")
                     .removeClass("c-default")
+                    .removeClass("c-pointer")
                     .addClass("horario-liberado")
                     .find("span").html("")
                     .attr("title", "")
@@ -737,6 +740,7 @@
 
                 capelas_ocupacao1 = retorno.cap_ocupacao1;
                 capelas_ocupacao2 = retorno.cap_ocupacao2;
+                capelas_status = retorno.capelas;
 
                 clearInterval;
 
@@ -786,7 +790,6 @@
                     {
                         if(!(hora > prim_horario_livre)) 
                         {
-                        //          console.log("Prim:" + prim_horario_livre + " |  hora:"+hora);
                             $(linha).find(".td"+hora.substr(0,2)+hora.substr(3,2))
                             .removeClass("horario-liberado")
                             .addClass("horario-indisponivel c-default")
@@ -904,7 +907,7 @@
                         }
                         $(linha).find("td").eq(dados.fim)
                             .removeClass("horario-liberado")
-                            .addClass("horario-indisponivel c-default")
+                            .addClass("horario-indisponivel c-pointer")
                             .prop("proto", dados.protocolo)
                             .attr("title", titulo)
                             .find("span").html(conteudo);
@@ -917,7 +920,7 @@
                                     _msg = ".s"+$(linha).find("td").eq(i).data("hora");
                                     $(linha).find("td").eq(i)
                                         .removeClass("horario-liberado")
-                                        .addClass("horario-indisponivel c-default bg-gray")
+                                        .addClass("horario-indisponivel c-pointer bg-gray")
                                         .attr("title", dados.falecido+"\n"+destinacao+": "+data+", "+dados.capela+" às " + 
                                             dados.hr_sepultamento+"\nFuneraria: " +dados.funeraria+"\nCorretor: "+dados.corretor)
                                         .find("span").html(nome_fal.toUpperCase()+"<br>Funerária: "+dados.funeraria);
@@ -932,7 +935,7 @@
                                 _msg = ".s"+$(linha).find("td").eq(i).data("hora");
                                 $(linha).find("td").eq(i)
                                     .removeClass("horario-liberado")
-                                    .addClass("horario-indisponivel c-default")
+                                    .addClass("horario-indisponivel c-pointer")
                                     .attr("proto", dados.protocolo)
                                     .attr("title", dados.falecido+"\n"+destinacao+": "+data+", "+dados.capela+" às " + 
                                         dados.hr_sepultamento+"\nFuneraria: " +dados.funeraria+"\nCorretor: "+dados.corretor)
@@ -1081,7 +1084,7 @@
             dados = $(this).attr("title").replace(/(?:\r\n|\r|\n)/g, '<br>');
 
             swalWithBootstrapButtons.fire({
-                title: "Aviso para porta da Capela ",
+                title: "Aviso para a Porta da Capela ",
                 html: "<br>Falecido:" + dados + "<br><br><h2><strong>Imprimir o Aviso ?</strong></h2><br>",
                 icon: 'question',
                 cancelButtonColor: '#d33',
@@ -1115,6 +1118,11 @@
                 $(this).find(_msg).empty();
                 dia_reserva=1;
 
+                if ( {{ Auth::user()->nivel }} == 9 ) 
+                    $("#capela_sepultamento").html("<option selected value='0'>Automatico</option>");
+                else
+                    $("#capela_sepultamento").val(0);
+                
             } else {
   
                 avisar = true;
@@ -1160,7 +1168,7 @@
         }
 
         capelas={ A:0, B:0, C:0, D:0, E:0, F:0, G:0, H:0, I:0, J:0 };
-        capelas_livres=["C", "D", "E", "F", "G", "H", "I", "J"];
+        capelas_livres=["D", "E", "F", "G", "H", "I", "J"];
         if($(".reservar-horario").length == 0) 
         {
             if ({{ Auth::user()->nivel }} == 9 ) {
@@ -1176,7 +1184,7 @@
         }
 
         /*  Verifica se tem Capelas totalmente livres 
-            a partir da Capela C, se não tiver usa a A e B    */
+            a partir da Capela D, se não tiver usa a A e C    */
         _capela="";
 
         var hora="";
@@ -1186,22 +1194,32 @@
             hora= hora.substring(0, 2) + ":" + hora.substring(2, 2);
         }
 
-        var primeiro_horario_livre="1635";
         $.each(array, function(index, horario) {
-            if( horario=="" ) {
+            regCapela = capelas_status.find(regCapela => regCapela.Capela==index);
+            if( regCapela.Liberada=="1" )
+            {
+              if( horario=="" ) {
                 _capela = index; 
-                if(index>="C" ) {
+                if(index>="D" ) {
                     return false;
                 }
-            } else
-            if( horario<primeiro_horario_livre ) {
-                primeiro_horario_livre=horario;
-                primeiro_horario_livre_capela = index; 
-                if(index>="C" ) {
-                    return false;
-                }
+              }
             }
         });
+
+        var primeiro_horario_livre="1630";
+        var primeiro_horario_livre_capela="";
+
+        if(!_capela) {      //  Se não houver capela livre, verifica parcialmente livre
+            $.each(array, function(index, horario) {
+              regCapela = capelas_status.find(regCapela => regCapela.Capela==index);
+              if( regCapela.Liberada=="1" && horario<primeiro_horario_livre ) 
+              {
+                primeiro_horario_livre=horario;
+                primeiro_horario_livre_capela = index; 
+              }
+            });
+        } 
 
         if(!_capela && primeiro_horario_livre > "16:30" && avisar) 
         {
@@ -1213,10 +1231,17 @@
                 return false;
             
         } else {
-            if(!_capela && avisar) {
+            if(!_capela && primeiro_horario_livre > "10:00" && avisar) {
                 _capela = primeiro_horario_livre_capela;
                 avisar = false;
-                swal.fire("", "Capela <strong>"+_capela+"</strong>  só estará liberada a partir das <strong>"+primeiro_horario_livre+"</strong>", "info" );
+                $date=new Date();
+                d = $date.data1() + " " + primeiro_horario_livre +':00';
+
+                dataHorario_ultSepultamento = new Date(d);
+                dataHorario_ultSepultamento.setMinutes(dataHorario_ultSepultamento.getMinutes() + 15);
+                horario_ultSepultamento= dataHorario_ultSepultamento.hora();
+
+                swal.fire("", "Só temos Capelas liberadas a partir das <strong>"+horario_ultSepultamento+"<br><br>Capela  "+_capela+"</strong>", "info" );
             }
             if(atualizar) 
             {
@@ -1228,6 +1253,11 @@
             }
         }
 
+    }
+
+    function regCapela(registro, capela) 
+    {
+        return capela.name==capela;
     }
 
 
@@ -1302,7 +1332,7 @@
         {
             d = $date + " " + array[capela]+':00';
             dataHorario_ultSepultamento = new Date(d);
-            dataHorario_ultSepultamento.setMinutes(dataHorario_ultSepultamento.getMinutes() + 30);
+            dataHorario_ultSepultamento.setMinutes(dataHorario_ultSepultamento.getMinutes() + 15);
             horario_ultSepultamento= dataHorario_ultSepultamento.hora();
 
             d=new Date(dataHorario_inicio);
@@ -1336,13 +1366,15 @@
         {
             dataHorario_inicio = horario_fim;
         }    
+        
+        $("#gravar").css("display","none");
+
         grava_Sepultamento(dataHorario_inicio, horario_fim);
     }
 
 
     function grava_Sepultamento(horario_inicio, horario_fim)
     {
-
         request="ope=c&entrada="+horario_inicio+"&sep="+horario_fim+"&"+$("#form_dados").serialize();
 
         $.ajax(
@@ -1354,11 +1386,13 @@
             {
                 retorno = JSON.parse(ret);
 
+                console.log(retorno);
+
                 let texto = '<div style="border: 1px solid;padding:26px 12px; text-align:left; font-size:16px;"><span style="line-height: 1.1;">Falecido:<strong> ' + $("#falecido").val() + '</strong><br><br>' +
                             retorno.horario + "<br><br><center><strong>" + retorno.capela + "</strong></center><br>Protocolo:<strong> " + retorno.protocolo + "</strong><br><br></span></div>" ;
 
-                if (retorno.status==1) {
-
+                if (retorno.status==1) 
+                {
                     swal.fire(
                     {
                         title: "Sepultamento agendado com sucesso",
@@ -1374,6 +1408,7 @@
                     })
     
                 } else {
+                    $("#gravar").css("display","initial");
                     swal.fire ({
                         icon: 'error', 
                         text: 'Erro ao cadastrar o agendamento',

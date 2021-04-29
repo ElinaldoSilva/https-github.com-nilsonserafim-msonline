@@ -138,8 +138,10 @@ class HomeController extends Controller
                     //  encontra proximo horario (coloca 15 minutos a mais para limpeza da capela)
                     $pesq = $panel['HorarioSepultamento'];
                     $hor = $tab_horarios[$pesq];
-
-                    $key = array_search(($hor+1), $tab_horarios); 
+                    if($hor<22) 
+                        $key = array_search(($hor+1), $tab_horarios); 
+                    else
+                        $key = array_search(($hor), $tab_horarios); 
 
                     $capela_ocupacao1[$panel['Capela']]=$key;
 
@@ -161,7 +163,10 @@ class HomeController extends Controller
                     $pesq = $panel['HorarioSepultamento'];
                     $hor = $tab_horarios[$pesq];
 
-                    $key = array_search(($hor+1), $tab_horarios); 
+                    if($hor<22) 
+                        $key = array_search(($hor+1), $tab_horarios); 
+                    else
+                        $key = array_search(($hor), $tab_horarios); 
 
                     $capela_ocupacao2[$panel['Capela']]=$panel['HorarioSepultamento'];
                 }
@@ -237,8 +242,10 @@ class HomeController extends Controller
 
         }
 
+        $regCapelas=$this->objCapelas->select("Nome as Capela", "Liberada", "Preferencial")->orderBy('Nome')->get();
+
         return json_encode(array("qtdRegistros"=>$registros, "hora_inicial"=>$hr_inicial, "data_atual"=>date('Y-m-d'), "data2"=>$date->format('Y-m-d'),
-             "registros"=>$result, "cap_ocupacao1"=>$capela_ocupacao1, "cap_ocupacao2"=>$capela_ocupacao2,
+             "registros"=>$result, "cap_ocupacao1"=>$capela_ocupacao1, "cap_ocupacao2"=>$capela_ocupacao2, "capelas"=>$regCapelas,
              "sep_diretos_1"=>$sepultamentos_diretos_1, "sep_capelas_1"=>$sepultamentos_capelas_1, "sep_detalhes_1"=>$sepultamentos_detalhes_1,
              "sep_diretos_2"=>$sepultamentos_diretos_2, "sep_capelas_2"=>$sepultamentos_capelas_2, "sep_detalhes_2"=>$sepultamentos_detalhes_2));
 
@@ -296,7 +303,7 @@ class HomeController extends Controller
             'DataHoraLiberacaoCapela'=>$liberacaoCapela,
             'DataSepultamento' => substr($request->sep, 0, 10),
             'NomeFuneraria' => strtoupper($funeraria),
-            'CorretorId' => $request->corretor,
+            'CorretorId' => "{" . $request->corretor . "}",
             'Corretor' => strtoupper($regCorretor->name),
             'CMC' => $cmc,
             'LocalFalecimento' => $request->local_falecimento,
@@ -310,7 +317,8 @@ class HomeController extends Controller
             'UsuarioRegistro' => "S.ONLINE-" . strtoupper($usuario),
             'DataHoraRegistro' => date("Y-m-d H:i:s")
         ]);
-        //  ];
+        // ];
+
 
         if($result) {
             $status=1;
